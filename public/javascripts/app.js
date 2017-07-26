@@ -5,7 +5,7 @@ Purpose: Routing For Views and Controller
 Created By: Hardik Thakor */
 
 //Initializing App
-var app = angular.module('boiler', ['ngRoute']);
+var app = angular.module('feeds', ['ngRoute']);
 
  app.config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvider) {
     //View Locator

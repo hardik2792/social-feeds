@@ -8,7 +8,6 @@ welcomeControl.$inject = ['$scope', '$rootScope', '$http', '$timeout', 'restServ
 app.controller('welcomeControl', welcomeControl);
 
 function welcomeControl($scope, $rootScope, $http, $timeout, restService) {
-
   var toastEle = document.getElementById("toaster"); //for displaying messages in div
 
   //Config File Initialization
@@ -21,17 +20,32 @@ function welcomeControl($scope, $rootScope, $http, $timeout, restService) {
   $scope.currentIndex = 0; //Integer Declaration
   var bInitFlag = false; //Simple Javascript Variable Declaration
 
-  //Function For API Call
-  $scope.apiCall = function() {
-    toaster("API Called.....");
-    restService.getData().then(function(response){
-      console.log(response);
-      $timeout(function () {
-          toaster("API Responded.....");
-      }, 3000);
+  //Function For Getting Twitter Feeds
+  $scope.twitCall = function() {
+    toaster("Called For Twitter Feeds.....");
+    restService.getTweets().then(function(err,response){
+      console.log(response," -- ",err);
+
+      if(response.feeds.errors){
+        toaster("Error Occured! Possiblity of missing configuration....");
+      }
+      else{
+        toaster("Tweets Received....");
+        $scope.tweets = response.feeds;
+      }
 
     });
-  }
+  };
+
+  //Function For Getting Facebook Posts
+  $scope.fbCall = function() {
+    toaster("Called For Facebook Post.....");
+    restService.getPosts().then(function(response){
+      console.log(response);
+      $scope.posts = response.feeds;
+      toaster("API Responded.....");
+    });
+  };
 
   function toaster(msg) {
     toastEle.className = "show";
@@ -42,27 +56,15 @@ function welcomeControl($scope, $rootScope, $http, $timeout, restService) {
   }
 }
 
-//Directives
-app.directive('feature',function(){
+
+app.directive('twitCall',function(){
 	return {
-		template:"The features are as listed below: <br><ol><li>Organised Folder Structure</li><li>Angular Services</li><li>Angular Directives</li><li>Proper Path provided for bower components</li><li>Demonstration of API Calling</li><li>Demonstration of Connection to MongoDB(with 'mongodb'[npm package])</li></0l>"
+		template:"<button class='btn btn-primary btn-twitter' ng-click='twitCall()'' title='Click For getting Tweets'><span class='glyphicon glyphicon-th'><span> Fetch Tweets</button>"
 	}
 });
 
-app.directive('description',function(){
+app.directive('fbCall',function(){
 	return {
-		template:"This Boiler Plate is Developed using: <br><ul><li><strong>MEAN(MongoDB, Express, AngularJS(1.x), NodeJS)</strong> and</li><li> <strong>Bootstrap</strong></li></ul>"
-	}
-});
-
-app.directive('purpose',function(){
-	return {
-		template:"<h5>The purpose of Developing was to provide the template to Beginners to boost up their learning.</h5>"
-	}
-});
-
-app.directive('apiButton',function(){
-	return {
-		template:"<button class='btn btn-primary' ng-click='apiCall()'' title='Click For Calling API'><span class='glyphicon glyphicon-play'><span>Call API</button>"
+		template:"<button class='btn btn-primary btn-facebook' ng-click='fbCall()'' title='Click For getting Facebook Post'><span class='glyphicon glyphicon-th'><span> Fetch Posts</button>"
 	}
 });

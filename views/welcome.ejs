@@ -4,25 +4,42 @@ App Name: MEAN Boiler
 Purpose: Home Screen Of App
 Created By: Hardik Thakor -->
 
-<div id="" class="container">
-  <div id="head" class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-      <h1 class='btn-primary'>MEAN Boiler Plate for Beginner</h1>
-
-      <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
-        <h5>Hello Dev, </h5><br><br>
-        <div class="text-left content-main">
-
-          <purpose></purpose>
-          <description></description> <!-- Description Directive-->
-
-          It has modifed folder structure of <strong>expressJS</strong>, specially designed for the <strong>Beginner</strong>.<br><br>
-
-          <feature></feature> <!-- Feature Directive-->
+<div id="" class="container text-center">
+  <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 header">
+    <b>Social Feeds</b>
+  </div>
+  <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 text-left post-div">
+        <div  class="text-center post-div-header">
+          <twit-call></twit-call>
         </div>
-        <div  class="text-center">
-          <api-button></api-button>
+        <hr class="hrline">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- {{tweets}} -->
+          <div ng-repeat="tweet in tweets" class="tweets">
+            <span class='glyphicon glyphicon-th-list'><span>
+            {{tweet.text}}
+          </div>
         </div>
       </div>
+      <div class="row col-lg-2 col-md-2 col-sm-2 ">
+        &nbsp
+      </div>
+      <div class=" col-lg-5 col-md-5 col-sm-5 col-xs-12 text-left post-div">
+        <div  class="text-center post-div-header">
+          <fb-call></fb-call>
+        </div>
+        <hr class="hrline">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div ng-repeat="post in posts" class="feeds">
+            <span class='glyphicon glyphicon-th'><span>
+            <img src="{{post.attachments.data[0].media.image.src}}" height="40" width="50"></img>
+            {{post.message}}
+
+          </div>
+        </div>
+      </div>
+
 
       <!--  Toaster -->
       <div id="toaster">{{toaster_msg}}</div>

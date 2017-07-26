@@ -1,6 +1,6 @@
 {
-  "name": "meandemo",
-  "version": "0.0.0",
+  "name": "socialfeeds",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -12,7 +12,25 @@
     "debug": "~2.2.0",
     "ejs": "^2.5.6",
     "express": "~4.13.4",
+    "fb": "^2.0.0",
     "mongodb": "^2.2.30",
-    "serve-favicon": "~2.3.0"
-  }
+    "serve-favicon": "~2.3.0",
+    "twit": "^2.2.9"
+  },
+  "description": "fetchiing tweeter feeds",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hardik2792/social-feeds.git"
+  },
+  "keywords": [
+    "twitter",
+    "feeds"
+  ],
+  "author": "Hardik Thakor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hardik2792/social-feeds/issues"
+  },
+  "homepage": "https://github.com/hardik2792/social-feeds#readme"
 }
